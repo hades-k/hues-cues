@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hues &amp; Cues</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="offline" hidden>Reconnecting…</div>
+
+  <main id="home">
+    <h1 class="logo"><span>Hues</span> &amp; <span>Cues</span></h1>
+    <p class="tagline">Describe a color in one word. See who lands closest.</p>
+    <div class="card">
+      <label for="nameInput">Your name</label>
+      <input id="nameInput" maxlength="16" autocomplete="off" placeholder="e.g. Aidana">
+      <button id="createBtn" class="primary">Create a new game</button>
+      <div class="or">or join one</div>
+      <div class="row">
+        <input id="codeInput" maxlength="4" autocomplete="off" autocapitalize="characters" placeholder="CODE">
+        <button id="joinBtn">Join</button>
+      </div>
+      <p id="homeError" class="error" hidden></p>
+      <div class="or">or share a single device</div>
+      <button id="localBtn">Pass &amp; play on this device</button>
+    </div>
+  </main>
+
+  <main id="local" hidden>
+    <h1 class="logo"><span>Hues</span> &amp; <span>Cues</span></h1>
+    <p class="tagline">Pass &amp; play — who's playing?</p>
+    <div class="card">
+      <div id="localNames"></div>
+      <button id="addPlayerBtn" class="ghost">+ Add player</button>
+      <button id="startLocalBtn" class="primary">Start game</button>
+      <button id="backBtn" class="ghost">Back</button>
+      <p id="localError" class="error" hidden></p>
+    </div>
+  </main>
+
+  <main id="game" hidden>
+    <header>
+      <h1 class="logo small"><span>Hues</span> &amp; <span>Cues</span></h1>
+      <div class="meta">
+        <span id="turnInfo"></span>
+        <button id="shareBtn" title="Copy invite link">Room <b id="roomCode"></b> ⧉</button>
+        <button id="leaveBtn" class="ghost">Leave</button>
+      </div>
+    </header>
+    <section id="panel" class="card"></section>
+    <p id="toast" class="error" hidden></p>
+    <section id="players"></section>
+    <div id="boardWrap" hidden><div id="board"></div></div>
+  </main>
+
+  <script src="game.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>
