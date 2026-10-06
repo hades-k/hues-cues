@@ -105,7 +105,12 @@
     const needed = room.players.filter((p) => p.connected && p.id !== giver);
     if (!needed.length || !needed.every((p) => room.done.has(p.id))) return;
     room.done = new Set();
-    if (room.phase === 'guess1') {
+    // If every guesser is already on the exact square there is nothing left to narrow down.
+    const allExact = needed.every((p) => {
+      const g = room.guesses[p.id]?.[0];
+      return g && g.r === room.target.r && g.c === room.target.c;
+    });
+    if (room.phase === 'guess1' && !allExact) {
       room.phase = 'cue2';
     } else {
       scoreRound(room);
@@ -214,6 +219,13 @@
         mine.push({ r, c });
         room.done.add(pid);
         maybeAdvance(room);
+        return {};
+      }
+      case 'endRound': {
+        // The second cue is optional: the cue giver may go straight to the reveal.
+        if (!isGiver || room.phase !== 'cue2') return null;
+        scoreRound(room);
+        room.phase = 'reveal';
         return {};
       }
       case 'next': {

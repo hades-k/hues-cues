@@ -310,6 +310,7 @@ function panelHTML() {
         <form class="row" data-action="cue">
           <input id="cueInput" maxlength="49" autocomplete="off" placeholder="Second cue: one or two words">
           <button class="primary">Give cue</button>
+          <button type="button" data-action="endRound">No second cue — reveal</button>
         </form>${skip}`;
 
     case 'guess1':
